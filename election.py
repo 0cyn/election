@@ -44,8 +44,8 @@ while True:
             }
         ]
         
-        print(json.dumps(fun))
-        break
+            print(json.dumps(fun))
+            break
     
     if requests.get("https://raw.githubusercontent.com/KritantaDev/election/main/update1").status_code == 200:
         if 'update2' in requests.get("https://raw.githubusercontent.com/KritantaDev/election/main/update1").text:
