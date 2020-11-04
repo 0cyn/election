@@ -8,8 +8,8 @@ from collections import namedtuple
 Candidate = namedtuple("Candidate", ('name', 'electoral', 'percentage', 'count'))
 
 result = "waiting for update"
-if True:
-    while True:
+while True:
+    try:
         url = "https://www.google.com/search?q=us+election+results&rlz=1C1SQJL_enUS909US911&aqs=chrome.0.0i67i131i433i457j0i20i131i263i433j0i131i433j0i67j0i131i433l2j69i60l2.1612j0j9&sourceid=chrome&ie=UTF-8"
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
@@ -48,6 +48,7 @@ if True:
             if requests.get("https://raw.githubusercontent.com/KritantaDev/election/main/update1").text == 'update':
                 print("UPDATE AVAILABLE - REDOWNLOAD FROM https://github.com/kritantadev/election OR RUN git pull")
         time.sleep(10)
-
+    except IndexError:
+        pass 
 
 
