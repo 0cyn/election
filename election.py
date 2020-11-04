@@ -11,7 +11,7 @@ if sys.stdout.isatty() and 'noterm' not in sys.argv:
     print("Running in terminal context, updating every 10 seconds on loop")
 
 while True:
-    url = "https://www.google.com/search?q=election+results&rlz=1C1SQJL_enUS909US911&oq=election+results&aqs=chrome.0.0i67i131i433i457j0i20i131i263i433j0i131i433j0i67j0i131i433l2j69i60l2.1612j0j9&sourceid=chrome&ie=UTF-8"
+    url = "https://www.google.com/search?q=us+election+results&rlz=1C1SQJL_enUS909US911&aqs=chrome.0.0i67i131i433i457j0i20i131i263i433j0i131i433j0i67j0i131i433l2j69i60l2.1612j0j9&sourceid=chrome&ie=UTF-8"
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
     page = requests.get(url, headers=headers)
