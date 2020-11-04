@@ -18,8 +18,8 @@ while True:
     soup = BeautifulSoup(page.text, 'html.parser')
 
     blox = soup.body.select('#main #search div table td span')
-    trump = Candidate('Trump', blox[0].get_text(), blox[1].get_text(), blox[2].get_text())
-    biden = Candidate('Biden', blox[3].get_text(), blox[4].get_text(), blox[5].get_text())
+    trump = Candidate('Biden', blox[0].get_text(), blox[1].get_text(), blox[2].get_text())
+    biden = Candidate('Trump', blox[3].get_text(), blox[4].get_text(), blox[5].get_text())
 
     if sys.stdout.isatty() and 'noterm' not in sys.argv:
         print(trump)
@@ -45,6 +45,6 @@ while True:
         break
     
     if requests.get("https://raw.githubusercontent.com/KritantaDev/election/main/update1").status_code == 200:
-        if requests.get("https://raw.githubusercontent.com/KritantaDev/election/main/update1").text == 'update':
+        if requests.get("https://raw.githubusercontent.com/KritantaDev/election/main/update1").text == 'update1':
             print("UPDATE AVAILABLE - REDOWNLOAD FROM https://github.com/kritantadev/election OR RUN git pull")
     time.sleep(10)
