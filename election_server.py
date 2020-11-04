@@ -17,26 +17,28 @@ while True:
         soup = BeautifulSoup(page.text, 'html.parser')
 
         blox = soup.body.select('#main #search div table td span')
-        biden = Candidate('Biden', blox[0].get_text(), blox[1].get_text(), blox[2].get_text())
-        trump = Candidate('Trump', blox[3].get_text(), blox[4].get_text(), blox[5].get_text())
+        candidatefirst = 'Joe Biden' if 'iden' in soup.body.select('th div a div div')[1].get_text() else 'Donald Trump'
+        candidatesecond = 'Joe Biden' if candidatefirst != 'Joe Biden' else 'Donald Trump'
+        first = Candidate(candidatefirst, blox[0].get_text(), blox[1].get_text(), blox[2].get_text())
+        second = Candidate(candidatesecond, blox[3].get_text(), blox[4].get_text(), blox[5].get_text())
 
         if sys.stdout.isatty() and 'noterm' not in sys.argv:
-            print(trump)
-            print(biden)
+            print(first)
+            print(second)
     
         else:
             fun = [
                 {
-                    'candidate':'Trump',
-                    'electoral':trump.electoral,
-                    'percentage':trump.percentage,
-                    'count':trump.count
+                    'candidate':first.name,
+                    'electoral':first.electoral,
+                    'percentage':first.percentage,
+                    'count':first.count
             },
             {
-                'candidate':'Biden',
-                'electoral':biden.electoral,
-                'percentage':biden.percentage,
-                'count':biden.count
+                'candidate':second.name,
+                'electoral':second.electoral,
+                'percentage':second.percentage,
+                'count':second.count
             }
         ]
         
