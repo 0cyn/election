@@ -18,26 +18,29 @@ while True:
     soup = BeautifulSoup(page.text, 'html.parser')
 
     blox = soup.body.select('#main #search div table td span')
-    trump = Candidate('Biden', blox[0].get_text(), blox[1].get_text(), blox[2].get_text())
-    biden = Candidate('Trump', blox[3].get_text(), blox[4].get_text(), blox[5].get_text())
+    if True: 
+        candidatefirst = 'Joe Biden' if 'iden' in soup.body.select('th div a div div')[1].get_text() else 'Donald Trump'
+        candidatesecond = 'Joe Biden' if candidatefirst != 'Joe Biden' else 'Donald Trump'
+        first = Candidate(candidatefirst, blox[0].get_text(), blox[1].get_text(), blox[2].get_text())
+        second = Candidate(candidatesecond, blox[3].get_text(), blox[4].get_text(), blox[5].get_text())
 
-    if sys.stdout.isatty() and 'noterm' not in sys.argv:
-        print(trump)
-        print(biden)
+        if sys.stdout.isatty() and 'noterm' not in sys.argv:
+            print(first)
+            print(second)
     
-    else:
-        fun = [
-            {
-                'candidate':'Trump',
-                'electoral':trump.electoral,
-                'percentage':trump.percentage,
-                'count':trump.count
+        else:
+            fun = [
+                {
+                    'candidate':first.name,
+                    'electoral':first.electoral,
+                    'percentage':first.percentage,
+                    'count':first.count
             },
             {
-                'candidate':'Biden',
-                'electoral':biden.electoral,
-                'percentage':biden.percentage,
-                'count':biden.count
+                'candidate':second.name,
+                'electoral':second.electoral,
+                'percentage':second.percentage,
+                'count':second.count
             }
         ]
         
@@ -45,6 +48,6 @@ while True:
         break
     
     if requests.get("https://raw.githubusercontent.com/KritantaDev/election/main/update1").status_code == 200:
-        if requests.get("https://raw.githubusercontent.com/KritantaDev/election/main/update1").text == 'update1':
+        if 'update2' in requests.get("https://raw.githubusercontent.com/KritantaDev/election/main/update1").text:
             print("UPDATE AVAILABLE - REDOWNLOAD FROM https://github.com/kritantadev/election OR RUN git pull")
     time.sleep(10)
