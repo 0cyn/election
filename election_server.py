@@ -17,8 +17,8 @@ if True:
         soup = BeautifulSoup(page.text, 'html.parser')
 
         blox = soup.body.select('#main #search div table td span')
-        trump = Candidate('Trump', blox[0].get_text(), blox[1].get_text(), blox[2].get_text())
-        biden = Candidate('Biden', blox[3].get_text(), blox[4].get_text(), blox[5].get_text())
+        trump = Candidate('Biden', blox[0].get_text(), blox[1].get_text(), blox[2].get_text())
+        biden = Candidate('Trump', blox[3].get_text(), blox[4].get_text(), blox[5].get_text())
 
         if sys.stdout.isatty() and 'noterm' not in sys.argv:
             print(trump)
