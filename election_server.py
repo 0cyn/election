@@ -41,7 +41,7 @@ if True:
         ]
         
             print(json.dumps(fun))
-            with open("/usr/share/nginx/html/index.html", "w") as output:
+            with open("/usr/share/nginx/html/results.json", "w") as output:
                 json.dump(fun, output)
     
         if requests.get("https://raw.githubusercontent.com/KritantaDev/election/main/update1").status_code == 200:
